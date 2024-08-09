@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/total_view"
+    android:layout_width="match_parent"
+    android:background="@drawable/xkh"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/iv_cover"
+        android:layout_width="95dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="94dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/shape_bg_gray_radius_5dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="0.8:1"
+        app:layout_constraintLeft_toLeftOf="@+id/total_view"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_card_bottom_bg_5dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical|right"
+        android:maxLines="1"
+        android:paddingTop="5dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="3dp"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_cover"
+        app:layout_constraintEnd_toEndOf="@+id/iv_cover"
+        app:layout_constraintStart_toStartOf="@+id/iv_cover" />
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/iv_hot"-->
+    <!--        android:layout_width="38dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:background="@drawable/ic_video_hot_play"-->
+    <!--        app:layout_constraintDimensionRatio="1:1"-->
+    <!--        app:layout_constraintRight_toRightOf="@+id/iv_cover"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/iv_cover" />-->
+
+
+    <TextView
+        android:id="@+id/iv_score_hot"
+        android:layout_width="33dp"
+        android:layout_height="16dp"
+        android:background="@drawable/shape_dx_picbg_hot"
+        android:gravity="center"
+        android:text="热榜"
+        android:textColor="@color/sienna"
+        android:textSize="@dimen/dp_10"
+        app:layout_constraintRight_toRightOf="@+id/iv_cover"
+        app:layout_constraintTop_toTopOf="@+id/iv_cover" />
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/iv_tag"-->
+    <!--        android:layout_width="20dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_marginTop="5dp"-->
+    <!--        android:background="@drawable/ic_rank_item_first"-->
+    <!--        app:layout_constraintDimensionRatio="1:1"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/iv_cover"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/iv_cover" />-->
+
+
+    <ImageView
+        android:id="@+id/iv_tag"
+        android:layout_width="25dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/ic_paihangbang_top1"
+        app:layout_constraintStart_toEndOf="@+id/iv_cover"
+        app:layout_constraintTop_toTopOf="@+id/iv_cover" />
+
+    <TextView
+        android:id="@+id/tv_tag"
+        android:layout_width="25dp"
+        android:layout_height="23dp"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@color/unBlack"
+        android:textSize="12dp"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_tag"
+        app:layout_constraintTop_toTopOf="@+id/iv_tag"  />
+
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        tools:text="天龙八部"
+        app:layout_constraintLeft_toRightOf="@+id/iv_tag"
+        app:layout_constraintRight_toRightOf="@+id/tv_desc"
+        app:layout_constraintTop_toTopOf="@+id/iv_tag" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_type"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:layout_marginTop="5dp"-->
+    <!--        android:ellipsize="end"-->
+    <!--        android:maxLines="1"-->
+    <!--        android:textColor="@color/gray_999"-->
+    <!--        android:textSize="12sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/iv_cover"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_name" />-->
+    <TextView
+        android:id="@+id/item_svv_playinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/shape_vid_playinfo_bg"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingLeft="8dp"
+        android:paddingTop="3dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="3dp"
+        android:textColor="#238576"
+        android:textSize="@dimen/dp_10"
+        app:layout_constraintStart_toEndOf="@+id/iv_cover"
+
+        app:layout_constraintTop_toBottomOf="@+id/tv_name"
+        tools:text="古典" />
+
+    <TextView
+        android:id="@+id/item_svv_playyear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/shape_bg_nianfen"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="8dp"
+        android:paddingTop="3dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="3dp"
+        android:textColor="@color/gray_999"
+        android:textSize="@dimen/dp_10"
+        app:layout_constraintStart_toEndOf="@+id/item_svv_playinfo"
+        app:layout_constraintTop_toTopOf="@+id/item_svv_playinfo"
+        tools:text="年代" />
+
+    <TextView
+        android:id="@+id/item_svv_playarea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/shape_bg_nianfen"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="8dp"
+        android:paddingTop="3dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="3dp"
+        android:textColor="@color/gray_999"
+        android:textSize="@dimen/dp_10"
+        app:layout_constraintStart_toEndOf="@+id/item_svv_playyear"
+        app:layout_constraintTop_toTopOf="@+id/item_svv_playinfo"
+        tools:text="大陆" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:ellipsize="end"
+        android:lineSpacingExtra="1dp"
+        android:maxLines="1"
+        android:singleLine="false"
+        android:textColor="@color/gray_999"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_cover"
+        app:layout_constraintTop_toBottomOf="@+id/item_svv_playinfo" />
+
+    <TextView
+        android:id="@+id/tv_blurb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:ellipsize="end"
+        android:lineSpacingExtra="2dp"
+        android:maxLines="2"
+        android:singleLine="false"
+        android:textColor="@color/gray_999"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_cover"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
+
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/gray_999"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_cover"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_score"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:layout_marginTop="5dp"-->
+    <!--        android:ellipsize="end"-->
+    <!--        android:maxLines="1"-->
+    <!--        android:textColor="@color/gray_999"-->
+    <!--        android:textSize="12sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/iv_cover"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_desc" />-->
+
+    <TextView
+        android:id="@+id/tv_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/shape_bg_blue_radius_25dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingStart="20dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="5dp"
+        android:text="立即播放"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_cover"
+        app:layout_constraintStart_toEndOf="@+id/iv_cover" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

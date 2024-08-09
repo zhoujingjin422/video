@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/xkh"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/iv_home_top_bg"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/xkh"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:id="@+id/appbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="25dp"
+        android:paddingBottom="8dp"
+        app:elevation="0dp"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_home"
+            android:layout_width="match_parent"
+            app:tabMinWidth="1dp"
+            app:tabPaddingStart="10dp"
+            app:tabPaddingEnd="10dp"
+            app:tabPaddingTop="10dp"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:tabIndicatorColor="#ffffff"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/white"
+            android:background="#00FFFFFF"
+            app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+            app:tabTextColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- <ImageView
+                 android:layout_width="37dp"
+                 android:layout_height="37dp"
+
+
+                 android:scaleType="fitXY"
+                 android:src="@drawable/ic_zhuye"
+                  />-->
+
+
+
+
+            <LinearLayout
+                android:id="@+id/wqddg_line"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+
+                android:background="@drawable/bg_skip"
+                android:paddingStart="10dp"
+                android:paddingEnd="@dimen/dp_10"
+                android:orientation="horizontal">
+
+                <com.sunfusheng.marqueeview.MarqueeView
+                    android:id="@+id/tv_home_seek"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:drawablePadding="15dp"
+                    android:ellipsize="marquee"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:gravity="center_vertical|start"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:singleLine="true"
+                    android:text="@string/seek"
+                    app:mvTextColor="#ffffff"
+                    android:textSize="@dimen/font_normal"
+                    tools:ignore="NestedWeights,SpUsage" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/search_icon" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_home_all"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bg_skip5"
+                android:drawableStart="@drawable/ic_all"
+                android:drawablePadding="1dp"
+                android:drawableTint="@color/transparent_30_white"
+                android:gravity="center"
+                android:paddingLeft="19dp"
+                android:paddingRight="19dp"
+                android:text="筛选"
+                android:textColor="@color/transparent_30_white"
+                android:textSize="@dimen/font_normal"
+                android:visibility="gone"
+                />
+
+            <ImageView
+                android:id="@+id/iv_home_history"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/record_icon"
+                android:backgroundTint="@color/transparent_30_white"
+                android:contentDescription="@string/iv"
+                android:drawableTint="@color/transparent_30_white"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_home_download"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/down_icon"
+                android:backgroundTint="@color/transparent_30_white"
+                android:contentDescription="@string/iv"
+                android:drawableTint="@color/transparent_30_white"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appbar_layout" />
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginBottom="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical">
+        android:orientation="vertical">
+<!--        <com.ruifenglb.www.ad.AdWebView-->
+<!--            android:id="@+id/dongtu"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            />-->
+        <ImageView
+            android:id="@+id/tv_close"
+            android:layout_width="20dp"
+            android:visibility="gone"
+            android:layout_height="20dp"
+            android:background="@drawable/homeclose2"
+            />
+
+
+    </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/conPlayHis"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+       android:layout_alignBottom="@id/vp_home"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"
+        android:background="@drawable/bg_skip2"
+        android:padding="@dimen/dp_10">
+
+        <LinearLayout
+            android:id="@+id/btnAppMore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/imgClosHis"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_close22"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tvHis"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_weight="1"
+                android:textColor="#fff"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="上次观看：斗罗大陆 第一集" />
+
+            <TextView
+                android:id="@+id/tvHis1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:background="@drawable/bg_red"
+                android:gravity="center_horizontal"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:text="继续播放"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

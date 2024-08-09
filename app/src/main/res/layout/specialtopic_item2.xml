@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical">
+
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/bj2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tm"
+
+        android:orientation="vertical">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/m"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="2dp"
+
+
+            android:layout_marginRight="18dp"
+
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            >
+            <LinearLayout
+
+                android:layout_width="fill_parent"
+                android:layout_height="155dp"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/topic_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_video_source" />
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/topic_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:background="@drawable/shape_card_bottom_bg"
+                android:includeFontPadding="false"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:text="专题节目内容"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_smaller" />
+        </androidx.cardview.widget.CardView>
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

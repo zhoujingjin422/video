@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="never"
+    android:background="@color/xkh"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fab_margin"
+                android:textStyle="bold"
+                android:text="简介" />
+
+            <ImageView
+                android:id="@+id/ivCloseIntro"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/iv"
+                android:src="@drawable/ic_clear_seek" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/ll_play_comment"
+            android:background="@color/xkh3" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="12dp"
+            android:paddingRight="12dp">
+            <ImageView
+                android:id="@+id/Desc_Vod_Pic"
+                android:layout_width="100dp"
+                android:layout_height="140dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:paddingRight="12dp">
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fab_margin"
+                    android:textStyle="bold"
+                    tools:text="大宋少年志" />
+
+                <TextView
+                    android:id="@+id/Desc_Vod_class"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="12dp"
+                    android:lineSpacingExtra="8dp"
+                    android:paddingTop="5dp"
+                    android:textColor="@color/gray_999"
+                    android:textSize="@dimen/font_smaller"
+                    tools:text="2023 / 电影 / 动作 / 枪战" />
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="12dp"
+                    android:paddingTop="3dp"
+                    android:lineSpacingExtra="8dp"
+                    android:textColor="@color/gray_999"
+                    android:textSize="@dimen/font_smaller"
+                    tools:text="状态：全39集" />
+                <TextView
+                    android:id="@+id/tvActor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="12dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:textColor="@color/gray_999"
+                    android:textSize="@dimen/font_smaller"
+                    android:lineSpacingExtra="8dp"
+                    tools:text="主演：杨幂 / 张嘉译" />
+                <TextView
+                    android:id="@+id/tvYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="12dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="3dp"
+                    android:textColor="@color/Vod_Desc_textColor"
+                    android:textSize="@dimen/sp_14"
+                    android:visibility="gone"
+                    tools:text="年代：2023" />
+                <TextView
+                    android:id="@+id/tvType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="12dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:textColor="@color/Vod_Desc_textColor"
+                    android:visibility="gone"
+                    android:textSize="@dimen/sp_14"
+                    tools:text="类型：爱情 / 剧情" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:background="@color/xkh3"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tvScore_not"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:paddingTop="5dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="5dp"
+                            android:textColor="@color/gray_999"
+                            android:textSize="12dp"
+                            android:visibility="gone"
+                            android:gravity="center_vertical"
+                            android:text="评分期待中" />
+                        <TextView
+                            android:id="@+id/tvScore"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="12dp"
+                            android:gravity="center"
+                            android:textColor="@color/Vod_Desc_scoreColor"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            tools:text="9.5" />
+                        <TextView
+                            android:id="@+id/tvScore_Score"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="10dp"
+                            android:textColor="@color/gray_999"
+                            android:textSize="12dp"
+                            android:gravity="center"
+                            android:text="评价" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:background="@color/xkh3"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvPlayNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingRight="12dp"
+                            android:textColor="@color/Vod_Desc_playnumColor"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            tools:text="4567" />
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingRight="10dp"
+                            android:textColor="@color/gray_999"
+                            android:textSize="12dp"
+                            android:text="热度" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_summary_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="5dp"
+            android:layout_marginLeft="20dp"
+
+            android:paddingBottom="3dp"
+            android:text="剧情"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fab_margin"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvSummary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="10dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="5dp"
+            android:lineSpacingExtra="8dp"
+            android:textColor="@color/gray_999"
+            android:textSize="@dimen/font_smaller"
+            tools:text="讲哦是放假欧艾斯加坲按实际佛按实际of就爱睡觉发哦将司法局司法局艾斯欧放假啊死哦飞机扫街佛寺" />
+    </LinearLayout>
+</ScrollView>

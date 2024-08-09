@@ -1,0 +1,117 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 23
+        compileSdkVersion 28
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //======================arr方式引入 start================
+    //基础包 start
+    implementation(name: 'ads-sdk-pro-6.2.1.9', ext: 'aar')
+    implementation(name: 'anythink_banner', ext: 'aar')
+    implementation(name: 'anythink_china_core', ext: 'aar')
+    implementation(name: 'anythink_core', ext: 'aar')
+    implementation(name: 'anythink_interstitial', ext: 'aar')
+    api(name: 'anythink_native', ext: 'aar')
+    implementation(name: 'anythink_network_gdt', ext: 'aar')
+    implementation(name: 'anythink_network_pangle_china', ext: 'aar')
+    implementation(name: 'anythink_rewardvideo', ext: 'aar')
+    implementation(name: 'anythink_splash', ext: 'aar')
+    implementation(name: 'GDTSDK.unionNormal.4.591.1461', ext: 'aar')
+    // 章鱼 end
+    //================ arr方式引入 end ====================
+
+    implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation 'com.android.support:localbroadcastmanager:28.0.0'
+    //依赖包 arr方式需要引入，maven方式可以忽略 start
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation 'io.github.aliyun-sls:aliyun-log-android-sdk:2.7.0'
+    implementation 'com.hihonor.mcs:ads-identifier:1.0.2.301'
+    implementation 'com.google.android.material:material:1.0.0'
+    //multidex 64K问题，如果已添加请忽略
+    implementation 'androidx.multidex:multidex:2.0.1'
+    //依赖包 arr方式需要引入，maven方式可以忽略 end
+
+
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.tencent.bugly:crashreport:4.1.9'
+
+    //maven方式引入 start
+    /*//百度
+    implementation 'com.shenshi:ad-baidu-adapter:9.352.3'
+    //穿山甲&GroMore
+    implementation 'com.shenshi:ad-gromore-adapter:6.2.1.1.1'
+    //sigmob
+    implementation 'com.shenshi:ad-sigmob-adapter:4.19.1.1'
+    //快手
+//    implementation 'com.shenshi:ad-kuaishou-ad-adapter:3.3.66.1'// 快手-纯广告SDK
+    implementation 'com.shenshi:ad-kuaishou-ct-adapter:3.3.66.1'// 快手-包括广告和内容SDK
+    //广点通
+    implementation 'com.shenshi:ad-guangdiantong-adapter:4.580.1450.2'
+//    倍孜
+    implementation 'com.shenshi:ad-beizi-adapter:4.90.4.11.3'
+    //tanx
+    implementation 'com.shenshi:ad-tanx-adapter:3.5.5.1'
+    //海量
+    implementation 'com.shenshi:ad-hailiang-adapter:3.465.10.431.3'
+    //章鱼
+    implementation 'com.shenshi:ad-zhangyu-adapter:1.6.0.3.1'
+    //基础包
+    implementation 'com.shenshi:ad-openset-sdk:6.4.0.7'*/
+//================= maven方式引入 end =================
+
+
+
+    //wechat
+    //添加以后支持广点通广告跳转到微信小程序，增加跳转小程序的后续变现功能
+    //以下步骤不需要做任何操作，神蓍会帮你们操作，开发人员只需要引入sdk即可
+    /**
+     * 1，进入微信开放亚台创建移动应用;
+     * 2，应用创建完成后，获取到相应的微信ApplD;
+     * 3.在移动端嵌入最新版OpenSDK，并确认版本为5.3.1及以上;
+     * 4.在优量汇开发者平台，将微信开放平台填写的AppID与当前应用进行关联;
+     * 第四步联系我们运营帮你们配置
+     *
+     */
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.28'
+
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+
+}

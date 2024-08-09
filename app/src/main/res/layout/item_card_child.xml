@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/dp_10"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="2dp"
+    android:layout_marginLeft="2dp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="6dp"
+
+        app:cardElevation="0dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_iv_card_child_icon"
+            android:layout_width="match_parent"
+            android:layout_height="156dp"
+
+            android:contentDescription="@string/iv"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/item_tv_card_child_tip"
+            android:layout_width="38dp"
+            android:layout_height="18dp"
+            android:gravity="center"
+            android:background="@drawable/shape_dx_picbg_hot"
+            android:text="积分"
+            android:textColor="@color/white"
+            android:textSize="11dp"
+
+            android:layout_gravity="top|left" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_tv_card_child_up_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:ellipsize="end"
+
+            android:gravity="center"
+            android:background="@drawable/shape_card_bottom_bg"
+            android:includeFontPadding="false"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:text="@string/up_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_smallest" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_tv_card_child_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="5dp"
+        android:ellipsize="end"
+        android:gravity="center|start"
+
+        android:includeFontPadding="false"
+        android:paddingTop="7dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:visibility="visible"
+        app:autoSizeTextType="uniform"
+        tools:text="风语咒" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_tv_card_child_vod_blurb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+
+        android:gravity="center|start"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="@color/gray_999"
+        android:textSize="12sp"
+        android:visibility="visible"
+        app:autoSizeTextType="uniform"
+        tools:text="风语咒" />
+
+</LinearLayout>

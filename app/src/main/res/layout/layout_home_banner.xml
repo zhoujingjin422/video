@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardMaxElevation="15dp">
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        tools:background="@drawable/shape_bg_orange_to_light_top" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/shape_card_bottom_bg"
+        android:gravity="left|center_vertical"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="6dp"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        tools:text="双世宠妃" />
+    <FrameLayout
+        android:id="@+id/fl_add"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</androidx.cardview.widget.CardView>
