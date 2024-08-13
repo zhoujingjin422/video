@@ -1,8 +1,4 @@
 package com.ruifenglb.www.ui.play;
-
-import static com.ruifenglb.www.utils.AdsWatchUtils.DJ_NUM;
-import static com.ruifenglb.www.utils.AdsWatchUtils.TV_NUM;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import com.app.ad.biddingsdk.AdListener;
 import com.app.ad.biddingsdk.AdUtils;
 import com.blankj.utilcode.util.ActivityUtils;
@@ -57,12 +52,15 @@ import com.ruifenglb.www.network.RetryWhen;
 import com.ruifenglb.www.pip.PIPManager;
 import com.ruifenglb.www.ui.home.Vod;
 import com.ruifenglb.www.ui.login.LoginActivity;
+import com.ruifenglb.www.ui.widget.AdsMindDialog;
 import com.ruifenglb.www.utils.AdsWatchUtils;
 import com.ruifenglb.www.utils.Retrofit2Utils;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import me.drakeet.multitype.MultiTypeAdapter;
 import com.ruifenglb.www.utils.AgainstCheatUtil;
 import com.ruifenglb.www.utils.UserUtils;
@@ -118,107 +116,43 @@ public class PlayActivity extends BaseSupportActivity implements ControllerClick
         } else {
             if (vod instanceof VodBean){
                 int typeId = ((VodBean) vod).getType_id();
-                if (typeId==2){
-                    //电视剧第一集不看
-                    if (AdsWatchUtils.needShowAds(activity)){
-                        AdUtils.rewardTVVideo(activity, new AdListener() {
-                            @Override
-                            public void onShow() {
-
-                            }
-
-                            @Override
-                            public void onClose() {
-                                if (reword){
-                                    reword= false;
-                                    Intent intent = new Intent(App.getInstance(), NewPlayActivity.class);
-                                    intent.putExtra(KEY_VOD, vod);
-                                    PIPManager.getInstance().stopFloatWindow();
-                                    PIPManager.getInstance().reset();
-                                    ActivityUtils.startActivity(intent, R.anim.slide_in_right, R.anim.no_anim);
-                                }
-                            }
-
-                            @Override
-                            public void reword() {
-                                reword = true;
-                                int tvNum = com.ruifenglb.www.download.SPUtils.getInt(activity, TV_NUM, 0);
-                                tvNum++;
-                                com.ruifenglb.www.download.SPUtils.setInt(activity, TV_NUM, tvNum);
-                            }
-                        });
-                    }else{
-                        int tvNum = com.ruifenglb.www.download.SPUtils.getInt(activity, TV_NUM, 0);
-                        tvNum++;
-                        com.ruifenglb.www.download.SPUtils.setInt(activity, TV_NUM, tvNum);
-                        Intent intent = new Intent(App.getInstance(), NewPlayActivity.class);
-                        intent.putExtra(KEY_VOD, vod);
-                        PIPManager.getInstance().stopFloatWindow();
-                        PIPManager.getInstance().reset();
-                        ActivityUtils.startActivity(intent, R.anim.slide_in_right, R.anim.no_anim);
-                    }
-                }else if (typeId==29){
-                    if (AdsWatchUtils.needShowDJAds(activity)){
-                        AdUtils.rewardTVVideo(activity, new AdListener() {
-                            @Override
-                            public void onShow() {
-
-                            }
-
-                            @Override
-                            public void onClose() {
-                                if (reword){
-                                    reword= false;
-                                    Intent intent = new Intent(App.getInstance(), NewPlayActivity.class);
-                                    intent.putExtra(KEY_VOD, vod);
-                                    PIPManager.getInstance().stopFloatWindow();
-                                    PIPManager.getInstance().reset();
-                                    ActivityUtils.startActivity(intent, R.anim.slide_in_right, R.anim.no_anim);
-                                }
-                            }
-
-                            @Override
-                            public void reword() {
-                                reword = true;
-                                int tvNum = com.ruifenglb.www.download.SPUtils.getInt(activity, DJ_NUM, 0);
-                                tvNum++;
-                                com.ruifenglb.www.download.SPUtils.setInt(activity, TV_NUM, tvNum);
-                            }
-                        });
-                    }else{
-                        int tvNum = com.ruifenglb.www.download.SPUtils.getInt(activity, "", 0);
-                        tvNum++;
-                        com.ruifenglb.www.download.SPUtils.setInt(activity, DJ_NUM, tvNum);
-                        Intent intent = new Intent(App.getInstance(), NewPlayActivity.class);
-                        intent.putExtra(KEY_VOD, vod);
-                        PIPManager.getInstance().stopFloatWindow();
-                        PIPManager.getInstance().reset();
-                        ActivityUtils.startActivity(intent, R.anim.slide_in_right, R.anim.no_anim);
-                    }
+                if (typeId==2||typeId==13||typeId==29){
+                    Intent intent = new Intent(App.getInstance(), NewPlayActivity.class);
+                    intent.putExtra(KEY_VOD, vod);
+                    PIPManager.getInstance().stopFloatWindow();
+                    PIPManager.getInstance().reset();
+                    ActivityUtils.startActivity(intent, R.anim.slide_in_right, R.anim.no_anim);
                 }else{
-                    AdUtils.rewardVideo(activity, new AdListener() {
+                    new AdsMindDialog(activity, new Function0<Unit>() {
                         @Override
-                        public void onShow() {
+                        public Unit invoke() {
+                            AdUtils.getInstance().rewardVideo(activity, new AdListener() {
+                                @Override
+                                public void onShow() {
 
-                        }
+                                }
 
-                        @Override
-                        public void onClose() {
-                            if (reword){
-                                reword= false;
-                                Intent intent = new Intent(App.getInstance(), NewPlayActivity.class);
-                                intent.putExtra(KEY_VOD, vod);
-                                PIPManager.getInstance().stopFloatWindow();
-                                PIPManager.getInstance().reset();
-                                ActivityUtils.startActivity(intent, R.anim.slide_in_right, R.anim.no_anim);
-                            }
-                        }
+                                @Override
+                                public void onClose() {
+                                    if (reword) {
+                                        reword = false;
+                                        Intent intent = new Intent(App.getInstance(), NewPlayActivity.class);
+                                        intent.putExtra(KEY_VOD, vod);
+                                        PIPManager.getInstance().stopFloatWindow();
+                                        PIPManager.getInstance().reset();
+                                        ActivityUtils.startActivity(intent, R.anim.slide_in_right, R.anim.no_anim);
+                                    }
+                                }
 
-                        @Override
-                        public void reword() {
-                            reword = true;
+                                @Override
+                                public void reword(boolean b) {
+                                    reword = true;
+                                }
+                            });
+
+                            return null;
                         }
-                    });
+                    }).show();;
                 }
 
             }

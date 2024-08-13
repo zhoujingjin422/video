@@ -188,7 +188,7 @@ open class NewPlayActivity : BaseActivity(), OnSpeedItemClickListener {
 
     override fun initView() {
         super.initView()
-        AdUtils.initNativeExpressAd(this)
+        AdUtils.getInstance().initNativeExpressAd(this)
         // Builds().loadStartBean("")?.ads?.player_pause?.status // 0关闭 1,开启
 //        Builds().loadStartBean("")?.ads?.player_pause?.description // 广告代码
 //        EventBus.getDefault().register(this)
@@ -597,13 +597,13 @@ open class NewPlayActivity : BaseActivity(), OnSpeedItemClickListener {
 //                            } else {
                                 //显示暂停广告
                                 if (isLandscape) {
-                                    AdUtils.nativeExpressAd(this@NewPlayActivity,stopdH)
+                                    AdUtils.getInstance().nativeExpressAd(this@NewPlayActivity,stopdH)
                                     controller.startPlayStopHAd(Builds().loadStartBean("")?.ads?.player_pause?.description)
                                 } else {
                                     //竖屏显示广告
                                     stopdH.visibility = View.VISIBLE
                                     imgCloseStopAd.visibility = View.VISIBLE
-                                    AdUtils.nativeExpressAd(this@NewPlayActivity,stopdH)
+                                    AdUtils.getInstance().nativeExpressAd(this@NewPlayActivity,stopdH)
 //                                    stopdH.loadDataWithBaseURL(null, Builds().loadStartBean("")?.ads?.player_pause?.description, "text/html", "utf-8", null)
                                     controller.isPlayStopAd(true)
                                 }
@@ -1008,22 +1008,22 @@ open class NewPlayActivity : BaseActivity(), OnSpeedItemClickListener {
         } else {
             /* awvPlayerDown.visibility = View.VISIBLE
              awvPlayerDown.loadHtmlBody(ad.description)*/
-            if (MatchUtil.checkInteractionAd(this, ad.description)) {
-                AdUtils.interstitialAd(mActivity, object :AdListener{
-                    override fun onShow() {
-
-                    }
-
-                    override fun onClose() {
-
-                    }
-
-                    override fun reword() {
-
-                    }
-
-                })
-            }
+//            if (MatchUtil.checkInteractionAd(this, ad.description)) {
+//                AdUtils.getInstance().interstitialAd(mActivity, object :AdListener{
+//                    override fun onShow() {
+//
+//                    }
+//
+//                    override fun onClose() {
+//
+//                    }
+//
+//                    override fun reword(b:Boolean) {
+//
+//                    }
+//
+//                })
+//            }
 
         }
     }
@@ -1337,7 +1337,7 @@ open class NewPlayActivity : BaseActivity(), OnSpeedItemClickListener {
 
             if (controller.videoState) {
                 layoutAdv.visibility = View.VISIBLE
-                AdUtils.nativeExpressAd(this@NewPlayActivity,webviewV)
+                AdUtils.getInstance().nativeExpressAd(this@NewPlayActivity,webviewV)
             } else {
                 controller.startPlayHAdv(code)
             }
@@ -1822,7 +1822,7 @@ open class NewPlayActivity : BaseActivity(), OnSpeedItemClickListener {
             ToastUtils.showShort("请先登录")
             LoginActivity.start()
         }else{
-            AdUtils.rewardVideo(this@NewPlayActivity,object :AdListener{
+            AdUtils.getInstance().rewardVideo(this@NewPlayActivity,object :AdListener{
                 override fun onShow() {
                     adGroup()
                 }
@@ -1837,7 +1837,7 @@ open class NewPlayActivity : BaseActivity(), OnSpeedItemClickListener {
                     }
                 }
 
-                override fun reword() {
+                override fun reword(b:Boolean) {
                 }
             })
 

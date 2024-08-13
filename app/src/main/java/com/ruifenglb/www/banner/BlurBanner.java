@@ -188,8 +188,9 @@ public class BlurBanner<T extends BannerData> extends Banner {
             if (data instanceof VodBean){
                 int typeId = ((VodBean) data).getType_id();
                 if (typeId==999){
-                    holder.fl_add.setVisibility(View.VISIBLE);
-//                    AdUtils.bannerAd((Activity) holder.imageView.getContext(),holder.fl_add);
+                    if (holder.fl_add.getChildCount()==0){
+                        holder.fl_add.setVisibility(View.VISIBLE);
+                    }
                     return;
                 }
             }

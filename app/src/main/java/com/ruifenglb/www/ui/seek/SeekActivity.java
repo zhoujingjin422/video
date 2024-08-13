@@ -227,7 +227,7 @@ public class SeekActivity extends BaseActivity {
 
 
 
-        AdUtils.nativeExpressAd(this,awvSeek);
+        AdUtils.getInstance().nativeExpressAd(this,awvSeek);
 
 
 //        StartBean startBean = MMkvUtils.Companion.Builds().loadStartBean("");

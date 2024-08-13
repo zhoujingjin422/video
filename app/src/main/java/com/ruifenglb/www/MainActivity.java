@@ -1,7 +1,5 @@
 package com.ruifenglb.www;
 
-import static com.app.ad.biddingsdk.AdUtils.initRewardVideo;
-import static com.app.ad.biddingsdk.AdUtils.initTVRewardVideo;
 
 import android.Manifest;
 import android.content.Intent;
@@ -124,7 +122,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_USER_PRESENT);
         registerReceiver(screenBroadCastReceiver, filter);
-        AdUtils.interstitialAd(this, new AdListener() {
+        AdUtils.getInstance().interstitialAd(this, new AdListener() {
             @Override
             public void onShow() {
 
@@ -136,12 +134,12 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             }
 
             @Override
-            public void reword() {
+            public void reword(boolean b) {
 
             }
         });
-        initRewardVideo(this);
-        initTVRewardVideo(this);
+        AdUtils.getInstance().initRewardVideo(this);
+        AdUtils.getInstance().initTVRewardVideo(this);
         //初始化
         SupportFragment firstFragment = findFragment(HomeFragment.class);
 

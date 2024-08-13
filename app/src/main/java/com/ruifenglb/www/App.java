@@ -153,7 +153,7 @@ public class App extends BaseApplication {
                 e.printStackTrace();
             }
         }
-        AdUtils.init(this);
+        AdUtils.getInstance().init(this);
 
         //播放器配置，注意：此为全局配置，按需开启
         VideoViewManager.setConfig(VideoViewConfig.newBuilder()

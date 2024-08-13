@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="20dp">
+
+        <LinearLayout
+            android:id="@+id/guanbi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="40dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/new_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="您需要观看一条广告后才能观影"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/apkmax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="广告是为了永久免费"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/anythink_color_999999" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_gravity="center_horizontal"
+                android:text="观看广告30秒即可跳过"
+                android:textColor="@color/color_53" />
+
+
+
+
+            <LinearLayout
+                android:id="@+id/ll_task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/sp_14">
+
+                <TextView
+                    android:id="@+id/tvAppUpdate"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/shape_bg_gray_radius_10dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="再想想"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="normal"
+                    tools:ignore="SpUsage" />
+                <TextView
+                    android:id="@+id/tvUpdate"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/shape_bg_transparent_rect4"
+                    android:gravity="center"
+                    android:text="观看广告"
+                    android:textColor="@color/aliceBlue"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="normal"
+                    tools:ignore="SpUsage" />
+
+            </LinearLayout>
+        </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>

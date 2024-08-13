@@ -7,10 +7,7 @@
     android:layout_height="wrap_content">
     <androidx.cardview.widget.CardView
         android:id="@+id/mcv_us2er"
-
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/mcv_user"
-
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
@@ -20,6 +17,7 @@
         app:cardBackgroundColor="#00000000"
         android:background="@drawable/topicb"
         android:scaleType="fitXY"
+        android:visibility="gone"
         app:cardCornerRadius="8dp">
 
         <LinearLayout

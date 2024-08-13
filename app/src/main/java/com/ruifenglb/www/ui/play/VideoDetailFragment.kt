@@ -51,11 +51,10 @@ import com.ruifenglb.www.ui.home.MyDividerItemDecoration
 import com.ruifenglb.www.ui.login.LoginActivity
 import com.ruifenglb.www.ui.pay.PayActivity
 import com.ruifenglb.www.ui.share.ShareActivity
+import com.ruifenglb.www.ui.widget.AdsMindDialog
 import com.ruifenglb.www.ui.widget.HitDialog
 import com.ruifenglb.www.ui.widget.HitDialog.OnHitDialogClickListener
 import com.ruifenglb.www.utils.*
-import com.ruifenglb.www.utils.AdsWatchUtils.DJ_NUM
-import com.ruifenglb.www.utils.AdsWatchUtils.TV_NUM
 import com.ruifenglb.www.utils.DensityUtils.dp2px
 import com.ruifenglb.www.utils.DensityUtils.getScreenWidth
 import com.ruifenglb.www.utils.MMkvUtils.Companion.Builds
@@ -146,75 +145,27 @@ class VideoDetailFragment : BaseFragment() {
         RecommendAdapter().apply {
             setOnItemClickListener { adapter, view, position ->
                 val vodBean = adapter.getItem(position) as VodBean
-                if (vodBean.type_id==29){
-                    if (AdsWatchUtils.needShowAds(activity)) {
-                        AdUtils.rewardTVVideo(activity, object : AdListener {
-                            override fun onShow() {}
-                            override fun onClose() {
-                                if (reword) {
-                                    reword = false
-                                    playActivity.showNewVideo(vodBean)
-                                }
-                            }
-
-                            override fun reword() {
-                                reword = true
-                                var tvNum = SPUtils.getInt(activity, DJ_NUM, 0)
-                                tvNum++
-                                SPUtils.setInt(activity, DJ_NUM, tvNum)
-                            }
-                        })
-                    } else {
-                        var tvNum = SPUtils.getInt(activity, DJ_NUM, 0)
-                        tvNum++
-                        SPUtils.setInt(activity, DJ_NUM, tvNum)
-                        reword = false
-                        playActivity.showNewVideo(vodBean)
-                    }
-                }else if (vodBean.type_id==2){
-
-                    //电视剧第一集不看
-                    if (AdsWatchUtils.needShowAds(activity)) {
-                        AdUtils.rewardTVVideo(activity, object : AdListener {
-                            override fun onShow() {}
-                            override fun onClose() {
-                                if (reword) {
-                                    reword = false
-                                    playActivity.showNewVideo(vodBean)
-                                }
-                            }
-
-                            override fun reword() {
-                                reword = true
-                                var tvNum = SPUtils.getInt(activity, TV_NUM, 0)
-                                tvNum++
-                                SPUtils.setInt(activity, TV_NUM, tvNum)
-                            }
-                        })
-                    } else {
-                        var tvNum = SPUtils.getInt(activity, TV_NUM, 0)
-                        tvNum++
-                        SPUtils.setInt(activity, TV_NUM, tvNum)
-                        reword = false
-                        playActivity.showNewVideo(vodBean)
-                    }
+                if (vodBean.type_id==29||vodBean.type_id==2||vodBean.type_id==13){
+                    playActivity.showNewVideo(vodBean)
                 }else{
                     //非电视剧，都要看激励广告
-                    AdUtils.rewardVideo(activity,object :AdListener{
-                        override fun onShow() {
+                    AdsMindDialog(requireActivity()){
+                        AdUtils.getInstance().rewardVideo(activity,object :AdListener{
+                            override fun onShow() {
 
-                        }
-
-                        override fun onClose() {
-                            if (reword){
-                                reword = false
-                                playActivity.showNewVideo(vodBean)
                             }
-                        }
-                        override fun reword() {
-                            reword = true
-                        }
-                    })
+
+                            override fun onClose() {
+                                if (reword){
+                                    reword = false
+                                    playActivity.showNewVideo(vodBean)
+                                }
+                            }
+                            override fun reword(b:Boolean) {
+                                reword = true
+                            }
+                        })
+                    }.show()
                 }
             }
         }
@@ -225,60 +176,52 @@ class VideoDetailFragment : BaseFragment() {
             setOnItemClickListener { adapter, view, position ->
                 if (urlIndex != position) {
                     if (mVodBean.type_id==29){
-                        if (AdsWatchUtils.needShowAds(activity)) {
-                            AdUtils.rewardTVVideo(activity, object : AdListener {
-                                override fun onShow() {}
-                                override fun onClose() {
-                                    if (reword) {
-                                        reword = false
-                                        urlIndex = position
-                                        playActivity.changeSelection(urlIndex, false)
-                                        notifyDataSetChanged()
+                        if (AdsWatchUtils.needShowDJAds(position)) {
+                            AdsMindDialog(requireActivity()){
+                                AdUtils.getInstance().rewardVideo(activity, object : AdListener {
+                                    override fun onShow() {}
+                                    override fun onClose() {
+                                        if (reword) {
+                                            reword = false
+                                            urlIndex = position
+                                            playActivity.changeSelection(urlIndex, false)
+                                            notifyDataSetChanged()
+                                        }
                                     }
-                                }
 
-                                override fun reword() {
-                                    reword = true
-                                    var tvNum = SPUtils.getInt(activity, DJ_NUM, 0)
-                                    tvNum++
-                                    SPUtils.setInt(activity, DJ_NUM, tvNum)
-                                }
-                            })
+                                    override fun reword(b:Boolean) {
+                                        reword = true
+                                    }
+                                })
+                            }.show()
                         } else {
-                            var tvNum = SPUtils.getInt(activity, DJ_NUM, 0)
-                            tvNum++
-                            SPUtils.setInt(activity, DJ_NUM, tvNum)
                             reword = false
                             urlIndex = position
                             playActivity.changeSelection(urlIndex, false)
                             notifyDataSetChanged()
                         }
-                    }else if (mVodBean.type_id==2){
+                    }else if (mVodBean.type_id==2||mVodBean.type_id==13){
 
                         //电视剧第一集不看
-                        if (AdsWatchUtils.needShowAds(activity)) {
-                            AdUtils.rewardTVVideo(activity, object : AdListener {
-                                override fun onShow() {}
-                                override fun onClose() {
-                                    if (reword) {
-                                        reword = false
-                                        urlIndex = position
-                                        playActivity.changeSelection(urlIndex, false)
-                                        notifyDataSetChanged()
+                        if (AdsWatchUtils.needShowAds(position)) {
+                            AdsMindDialog(requireActivity()){
+                                AdUtils.getInstance().rewardTVVideo(activity, object : AdListener {
+                                    override fun onShow() {}
+                                    override fun onClose() {
+                                        if (reword) {
+                                            reword = false
+                                            urlIndex = position
+                                            playActivity.changeSelection(urlIndex, false)
+                                            notifyDataSetChanged()
+                                        }
                                     }
-                                }
 
-                                override fun reword() {
-                                    reword = true
-                                    var tvNum = SPUtils.getInt(activity, TV_NUM, 0)
-                                    tvNum++
-                                    SPUtils.setInt(activity, TV_NUM, tvNum)
-                                }
-                            })
+                                    override fun reword(b:Boolean) {
+                                        reword = true
+                                    }
+                                })
+                            }.show()
                         } else {
-                            var tvNum = SPUtils.getInt(activity, TV_NUM, 0)
-                            tvNum++
-                            SPUtils.setInt(activity, TV_NUM, tvNum)
                             reword = false
                             urlIndex = position
                             playActivity.changeSelection(urlIndex, false)
@@ -286,23 +229,25 @@ class VideoDetailFragment : BaseFragment() {
                         }
                     }else{
                         //非电视剧，都要看激励广告
-                        AdUtils.rewardVideo(activity,object :AdListener{
-                            override fun onShow() {
+                        AdsMindDialog(requireActivity()){
+                            AdUtils.getInstance().rewardVideo(activity,object :AdListener{
+                                override fun onShow() {
 
-                            }
-
-                            override fun onClose() {
-                                if (reword){
-                                    reword = false
-                                    urlIndex = position
-                                    playActivity.changeSelection(urlIndex, false)
-                                    notifyDataSetChanged()
                                 }
-                            }
-                            override fun reword() {
-                                reword = true
-                            }
-                        })
+
+                                override fun onClose() {
+                                    if (reword){
+                                        reword = false
+                                        urlIndex = position
+                                        playActivity.changeSelection(urlIndex, false)
+                                        notifyDataSetChanged()
+                                    }
+                                }
+                                override fun reword(b:Boolean) {
+                                    reword = true
+                                }
+                            })
+                        }.show()
                     }
 
                 }
@@ -379,22 +324,22 @@ class VideoDetailFragment : BaseFragment() {
         val ivLastest = requireView().findViewById<ImageView>(R.id.iv_lastest)
         val sortVodTypePic = requireView().findViewById<TextView>(R.id.item_svv_playtypePic)
         val sortVodView = requireView().findViewById<TextView>(R.id.item_svv_playinfo)
-        val checkOrder = requireView().findViewById<CheckBox>(R.id.checkOrder)
+//        val checkOrder = requireView().findViewById<CheckBox>(R.id.checkOrder)
         tlPlaySource = requireView().findViewById(R.id.tlPlaySource)
         rvLastest = requireView().findViewById(R.id.rvLastest)
-        val ivGovip = requireView().findViewById<LinearLayout>(R.id.iv_go_vip)
+//        val ivGovip = requireView().findViewById<LinearLayout>(R.id.iv_go_vip)
         val awvPlayerDown = requireView().findViewById<FrameLayout>(R.id.awvPlayerDown)
-        AdUtils.nativeExpressAd(requireActivity(),awvPlayerDown)
+        AdUtils.getInstance().nativeExpressAd(requireActivity(),awvPlayerDown)
         //新信息流广告VIP免广告
         //新信息流广告VIP免广告
         val bannerLayout = requireView().findViewById<FrameLayout>(R.id.bannerLayout)
         // App.getApplication().adUtils.showBannerAd(activity,bannerLayout,object :AdListener(){})
         //新信息流广告VIP免广告
-        if (SPUtils.getBoolean(context, "isVip") ) {
-
-        } else {
-        AdUtils.nativeExpressAd(activity, bannerLayout);
-        }
+//        if (SPUtils.getBoolean(context, "isVip") ) {
+//
+//        } else {
+//            AdUtils.getInstance().nativeExpressAd(activity, bannerLayout);
+//        }
         //新信息流广告VIP免广告
   //7242484
         var isVip = false
@@ -643,78 +588,7 @@ class VideoDetailFragment : BaseFragment() {
         }
 
         checkOrder.setOnClickListener { _->
-                if (mVodBean.type_id==29){
-                    if (AdsWatchUtils.needShowAds(activity)) {
-                        AdUtils.rewardTVVideo(activity, object : AdListener {
-                            override fun onShow() {}
-                            override fun onClose() {
-                                if (reword) {
-                                    reword = false
-                                    revertPlayList(checkOrder)
-                                }
-                            }
-
-                            override fun reword() {
-                                reword = true
-                                var tvNum = SPUtils.getInt(activity, DJ_NUM, 0)
-                                tvNum++
-                                SPUtils.setInt(activity, DJ_NUM, tvNum)
-                            }
-                        })
-                    } else {
-                        var tvNum = SPUtils.getInt(activity, DJ_NUM, 0)
-                        tvNum++
-                        SPUtils.setInt(activity, DJ_NUM, tvNum)
-                        reword = false
-                        revertPlayList(checkOrder)
-                    }
-                }else if (mVodBean.type_id==2){
-
-                    //电视剧第一集不看
-                    if (AdsWatchUtils.needShowAds(activity)) {
-                        AdUtils.rewardTVVideo(activity, object : AdListener {
-                            override fun onShow() {}
-                            override fun onClose() {
-                                if (reword) {
-                                    reword = false
-                                    revertPlayList(checkOrder)
-                                }
-                            }
-
-                            override fun reword() {
-                                reword = true
-                                var tvNum = SPUtils.getInt(activity, TV_NUM, 0)
-                                tvNum++
-                                SPUtils.setInt(activity, TV_NUM, tvNum)
-                            }
-                        })
-                    } else {
-                        var tvNum = SPUtils.getInt(activity, TV_NUM, 0)
-                        tvNum++
-                        SPUtils.setInt(activity, TV_NUM, tvNum)
-                        reword = false
-                        revertPlayList(checkOrder)
-                    }
-                }else{
-                    //非电视剧，都要看激励广告
-                    AdUtils.rewardVideo(activity,object :AdListener{
-                        override fun onShow() {
-
-                        }
-
-                        override fun onClose() {
-                            if (reword){
-                                reword = false
-                                revertPlayList(checkOrder)
-                            }
-                        }
-                        override fun reword() {
-                            reword = true
-                        }
-                    })
-                }
-
-
+            revertPlayList(checkOrder)
         }
 
         tvSameActor.setOnClickListener {

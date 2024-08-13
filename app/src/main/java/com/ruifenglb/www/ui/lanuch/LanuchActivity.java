@@ -109,10 +109,7 @@ public class LanuchActivity extends BaseActivity {
     //手机状态码android.permission-group.PHONE
     public final String[] EXTERNAL_STORAGE = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.CAMERA,
-            Manifest.permission.READ_PHONE_STATE};
+            Manifest.permission.READ_EXTERNAL_STORAGE};
 
     //相机
     public final String[] CAMERA_STATE = new String[]{

@@ -313,10 +313,10 @@ public class HomeFirstChildFragment2 extends BaseItemFragment<String> {
 
     private void initBannerData(List<VodBean> list) {
         if (list == null) return;
-//        VodBean vodBean1 = list.get(list.size() - 1);
-//        VodBean clone = vodBean1.clone();
-//        clone.setType_id(999);
-//        list.add(clone);
+        VodBean vodBean1 = list.get(list.size() - 1);
+        VodBean clone = vodBean1.clone();
+        clone.setType_id(999);
+        list.add(clone);
         BannerBean bannerBean = new BannerBean(list);
         items.add(bannerBean);
         adapter.notifyDataSetChanged();

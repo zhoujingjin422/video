@@ -41,7 +41,7 @@ public class SelfRenderViewUtil {
         FrameLayout iconArea = (FrameLayout) selfRenderView.findViewById(R.id.native_ad_image);
         FrameLayout contentArea = (FrameLayout) selfRenderView.findViewById(R.id.native_ad_content_image_area);
         final ATNativeImageView logoView = (ATNativeImageView) selfRenderView.findViewById(R.id.native_ad_logo);
-        View closeView = selfRenderView.findViewById(R.id.native_ad_close);
+//        View closeView = selfRenderView.findViewById(R.id.native_ad_close);
         FrameLayout shakeViewContainer = (FrameLayout) selfRenderView.findViewById(R.id.native_ad_shake_view_container);
         FrameLayout slideViewContainer = (FrameLayout) selfRenderView.findViewById(R.id.native_ad_slide_view_container);
         FrameLayout adLogoContainer = selfRenderView.findViewById(R.id.native_ad_logo_container);   //v6.1.52+
@@ -248,8 +248,8 @@ public class SelfRenderViewUtil {
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(dip2px(context, 40), dip2px(context, 10));//ad choice
         layoutParams.gravity = Gravity.BOTTOM | Gravity.RIGHT;
         nativePrepareInfo.setChoiceViewLayoutParams(layoutParams);//bind layout params for ad choice
-        nativePrepareInfo.setCloseView(closeView);//bind close button
-        closeView.setOnClickListener(listener);
+//        nativePrepareInfo.setCloseView(closeView);//bind close button
+//        closeView.setOnClickListener(listener);
         nativePrepareInfo.setClickViewList(clickViewList);//bind click view list
 
         //if (nativePrepareInfo instanceof ATNativePrepareExInfo) {

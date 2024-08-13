@@ -16,6 +16,7 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.github.StormWyrm.wanandroid.base.fragment.BaseFragment
 import com.ruifenglb.www.banner.Data
 import com.ruifenglb.www.download.SPUtils
+import com.ruifenglb.www.ui.widget.AdsMindDialog
 import com.ruifenglb.www.utils.AdsWatchUtils
 import kotlinx.android.synthetic.main.fragment_play_list.*
 import kotlinx.android.synthetic.main.fragment_user.*
@@ -31,31 +32,30 @@ class PlayListFragment : BaseFragment() {
                 if (urlIndex != position) {
 
                         if (playActivity.mVodBean.type_id==29){
-                            if (AdsWatchUtils.needShowAds(activity)) {
-                                AdUtils.rewardTVVideo(activity, object : AdListener {
-                                    override fun onShow() {}
-                                    override fun onClose() {
-                                        if (reword) {
-                                            reword = false
-                                            urlIndex = position
-                                            playActivity.changeSelection(position,false)
-                                            playActivity.changeVideoUrlIndex(position)
-                                            notifyDataSetChanged()
-                                            dismiss()
+                            if (AdsWatchUtils.needShowDJAds(position)) {
+                                AdsMindDialog(requireActivity()){
+                                    AdUtils.getInstance().rewardVideo(activity, object : AdListener {
+                                        override fun onShow() {}
+                                        override fun onClose() {
+                                            if (reword) {
+                                                reword = false
+                                                urlIndex = position
+                                                playActivity.changeSelection(position,false)
+                                                playActivity.changeVideoUrlIndex(position)
+                                                notifyDataSetChanged()
+                                                dismiss()
+                                            }
                                         }
-                                    }
 
-                                    override fun reword() {
-                                        reword = true
-                                        var tvNum = SPUtils.getInt(activity, AdsWatchUtils.DJ_NUM, 0)
-                                        tvNum++
-                                        SPUtils.setInt(activity, AdsWatchUtils.DJ_NUM, tvNum)
-                                    }
-                                })
+                                        override fun reword(b:Boolean) {
+                                            reword = true
+
+
+                                        }
+                                    })
+
+                                }.show()
                             } else {
-                                var tvNum = SPUtils.getInt(activity, AdsWatchUtils.DJ_NUM, 0)
-                                tvNum++
-                                SPUtils.setInt(activity, AdsWatchUtils.DJ_NUM, tvNum)
                                 reword = false
                                 urlIndex = position
                                 playActivity.changeSelection(position,false)
@@ -66,31 +66,30 @@ class PlayListFragment : BaseFragment() {
                         }else if (playActivity.mVodBean.type_id==2){
 
                             //电视剧第一集不看
-                            if (AdsWatchUtils.needShowAds(activity)) {
-                                AdUtils.rewardTVVideo(activity, object : AdListener {
-                                    override fun onShow() {}
-                                    override fun onClose() {
-                                        if (reword) {
-                                            reword = false
-                                            urlIndex = position
-                                            playActivity.changeSelection(position,false)
-                                            playActivity.changeVideoUrlIndex(position)
-                                            notifyDataSetChanged()
-                                            dismiss()
+                            if (AdsWatchUtils.needShowAds(position)) {
+                                AdsMindDialog(requireActivity()){
+                                    AdUtils.getInstance().rewardTVVideo(activity, object : AdListener {
+                                        override fun onShow() {}
+                                        override fun onClose() {
+                                            if (reword) {
+                                                reword = false
+                                                urlIndex = position
+                                                playActivity.changeSelection(position,false)
+                                                playActivity.changeVideoUrlIndex(position)
+                                                notifyDataSetChanged()
+                                                dismiss()
+                                            }
                                         }
-                                    }
 
-                                    override fun reword() {
-                                        reword = true
-                                        var tvNum = SPUtils.getInt(activity, AdsWatchUtils.TV_NUM, 0)
-                                        tvNum++
-                                        SPUtils.setInt(activity, AdsWatchUtils.TV_NUM, tvNum)
-                                    }
-                                })
+                                        override fun reword(b:Boolean) {
+                                            reword = true
+
+                                        }
+                                    })
+
+
+                                }.show()
                             } else {
-                                var tvNum = SPUtils.getInt(activity, AdsWatchUtils.TV_NUM, 0)
-                                tvNum++
-                                SPUtils.setInt(activity, AdsWatchUtils.TV_NUM, tvNum)
                                 reword = false
                                 urlIndex = position
                                 playActivity.changeSelection(position,false)
@@ -100,25 +99,27 @@ class PlayListFragment : BaseFragment() {
                             }
                         }else{
                             //非电视剧，都要看激励广告
-                            AdUtils.rewardVideo(activity,object : AdListener {
-                                override fun onShow() {
+                            AdsMindDialog(requireActivity()){
+                                AdUtils.getInstance().rewardVideo(activity,object : AdListener {
+                                    override fun onShow() {
 
-                                }
-
-                                override fun onClose() {
-                                    if (reword){
-                                        reword = false
-                                        urlIndex = position
-                                        playActivity.changeSelection(position,false)
-                                        playActivity.changeVideoUrlIndex(position)
-                                        notifyDataSetChanged()
-                                        dismiss()
                                     }
-                                }
-                                override fun reword() {
-                                    reword = true
-                                }
-                            })
+
+                                    override fun onClose() {
+                                        if (reword){
+                                            reword = false
+                                            urlIndex = position
+                                            playActivity.changeSelection(position,false)
+                                            playActivity.changeVideoUrlIndex(position)
+                                            notifyDataSetChanged()
+                                            dismiss()
+                                        }
+                                    }
+                                    override fun reword(b:Boolean) {
+                                        reword = true
+                                    }
+                                })
+                            }.show()
                         }
                 }
             }

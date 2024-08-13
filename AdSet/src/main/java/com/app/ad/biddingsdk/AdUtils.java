@@ -42,15 +42,26 @@ import com.anythink.splashad.api.ATSplashExListener;
 
 public class AdUtils {
 
-    private static ATSplashAd splashAd;
-    private static ATRewardVideoAd mRewardVideoAd;
-    private static ATRewardVideoAd mRewardTVVideoAd;
-    private static ATNative atNative;
-    private static ATInterstitial mInterstitialAd;
-    private static ATBannerView mBannerView;
+    private  ATSplashAd splashAd;
+    private  ATRewardVideoAd mRewardVideoAd;
+    private  ATRewardVideoAd mRewardTVVideoAd;
+    private  ATNative atNative;
+    private  ATNative atBannerNative;
+    private  ATInterstitial mInterstitialAd;
+    private  ATBannerView mBannerView;
+    private static AdUtils adUtils;
 
+    private AdUtils() {
+    }
+
+    public static AdUtils getInstance(){
+        if (adUtils==null){
+            adUtils = new AdUtils();
+        }
+        return adUtils;
+    }
     //初始化
-    public static void init(Application app){
+    public  void init(Application app){
 //初始化SDK该接口不会采集用户信息
         ATSDK.init(app, AppID, TakuAppKey);
 //调用init后请再调用start，否则可能影响广告填充，造成收入下降
@@ -59,13 +70,13 @@ public class AdUtils {
         ATSDK.setNetworkLogDebug(true);//应用上线前须关闭
 
     }
-    public static void initSplashAdd(Activity mContext){
+    public void initSplashAdd(Activity mContext){
         splashAd = new ATSplashAd(mContext, AdConfig.开屏, null, 4000);
         splashAd.loadAd();
     }
 
     //开屏广告
-    public static void splashAd(Activity mContext,ViewGroup container, AdListener listener) {
+    public  void splashAd(Activity mContext,ViewGroup container, AdListener listener) {
         if (splashAd!=null&&splashAd.isAdReady()) {
             splashAd.setAdListener( new ATSplashExListener() {
                 @Override
@@ -117,13 +128,51 @@ public class AdUtils {
         }
     }
 
-    public static void initRewardVideo(Activity activity){
+    public  void initRewardVideo(Activity activity){
         if (mRewardVideoAd==null||!mRewardVideoAd.isAdReady()){
             mRewardVideoAd = new ATRewardVideoAd(activity.getApplicationContext(), AdConfig.激励视频);
+            mRewardVideoAd.setAdListener(new ATRewardVideoListener(){
+                @Override
+                public void onRewardedVideoAdLoaded() {
+                    Log.e("mRewardVideoAd","onRewardedVideoAdLoaded");
+                }
+
+                @Override
+                public void onRewardedVideoAdFailed(AdError adError) {
+                    Log.e("mRewardVideoAd","onRewardedVideoAdFailed");
+                }
+
+                @Override
+                public void onRewardedVideoAdPlayStart(ATAdInfo atAdInfo) {
+                }
+
+                @Override
+                public void onRewardedVideoAdPlayEnd(ATAdInfo atAdInfo) {
+                    Log.e("mRewardVideoAd","onRewardedVideoAdPlayEnd");
+                }
+
+                @Override
+                public void onRewardedVideoAdPlayFailed(AdError adError, ATAdInfo atAdInfo) {
+                    Log.e("mRewardVideoAd","onRewardedVideoAdPlayFailed");
+                }
+
+                @Override
+                public void onRewardedVideoAdClosed(ATAdInfo atAdInfo) {
+                }
+
+                @Override
+                public void onRewardedVideoAdPlayClicked(ATAdInfo atAdInfo) {
+
+                }
+
+                @Override
+                public void onReward(ATAdInfo atAdInfo) {
+                }
+            });
             mRewardVideoAd.load();
         }
     }
-      public static void initTVRewardVideo(Activity activity){
+      public  void initTVRewardVideo(Activity activity){
         if (mRewardTVVideoAd==null||!mRewardTVVideoAd.isAdReady()){
             mRewardTVVideoAd = new ATRewardVideoAd(activity.getApplicationContext(), AdConfig.电视剧_激励);
             mRewardTVVideoAd.setAdListener(new ATRewardVideoListener() {
@@ -171,18 +220,17 @@ public class AdUtils {
         }
     }
     //激励视频
-    public static void rewardVideo(Activity activity,AdListener listener){
+    public  void rewardVideo(Activity activity,AdListener listener){
         if (mRewardVideoAd!=null&&mRewardVideoAd.isAdReady()) {
-            mRewardVideoAd.show(activity);
             mRewardVideoAd.setAdListener(new ATRewardVideoListener(){
                 @Override
                 public void onRewardedVideoAdLoaded() {
-
+                    Log.e("mRewardVideoAd","onRewardedVideoAdLoaded");
                 }
 
                 @Override
                 public void onRewardedVideoAdFailed(AdError adError) {
-
+                    Log.e("mRewardVideoAd","onRewardedVideoAdFailed");
                 }
 
                 @Override
@@ -192,12 +240,12 @@ public class AdUtils {
 
                 @Override
                 public void onRewardedVideoAdPlayEnd(ATAdInfo atAdInfo) {
-
+                    Log.e("mRewardVideoAd","onRewardedVideoAdPlayEnd");
                 }
 
                 @Override
                 public void onRewardedVideoAdPlayFailed(AdError adError, ATAdInfo atAdInfo) {
-
+                    Log.e("mRewardVideoAd","onRewardedVideoAdPlayFailed");
                 }
 
                 @Override
@@ -213,20 +261,20 @@ public class AdUtils {
 
                 @Override
                 public void onReward(ATAdInfo atAdInfo) {
-                    listener.reword();
+                    listener.reword(true);
                     initRewardVideo(activity);
                 }
             });
+            mRewardVideoAd.show(activity);
         }else{
             //重新加载
-            listener.reword();
+            listener.reword(false);
             listener.onClose();
             initRewardVideo(activity);
         }
     }
-    public static void rewardTVVideo(Activity activity,AdListener listener){
+    public  void rewardTVVideo(Activity activity,AdListener listener){
         if (mRewardTVVideoAd!=null&&mRewardTVVideoAd.isAdReady()) {
-            mRewardTVVideoAd.show(activity);
             mRewardTVVideoAd.setAdListener(new ATRewardVideoListener(){
                 @Override
                 public void onRewardedVideoAdLoaded() {
@@ -266,28 +314,35 @@ public class AdUtils {
 
                 @Override
                 public void onReward(ATAdInfo atAdInfo) {
-                    listener.reword();
+                    listener.reword(true);
                     initTVRewardVideo(activity);
                 }
             });
+            mRewardTVVideoAd.show(activity);
         }else{
             //重新加载
-            listener.reword();
+            listener.reword(false);
             listener.onClose();
             initTVRewardVideo(activity);
         }
     }
 
 
-    public static void initNativeExpressAd(Activity activity){
+    public  void initNativeExpressAd(Activity activity){
         atNative = new ATNative(activity, AdConfig.信息流, null);
         //发起广告请求
         atNative.makeAdRequest();
     }
+    public  void initNativeBannerExpressAd(Activity activity){
+        atBannerNative = new ATNative(activity, AdConfig.信息流, null);
+        //发起广告请求
+        atBannerNative.makeAdRequest();
+    }
     static NativeAd mNativeAd;
+    static NativeAd mBannerNativeAd;
 //    //信息流
     @SuppressLint("MissingInflatedId")
-    public static void nativeExpressAd(Activity activity, ViewGroup container){
+    public  void nativeExpressAd(Activity activity, ViewGroup container){
         //初始化广告加载对象
         if (atNative == null){
             return;
@@ -331,13 +386,61 @@ public class AdUtils {
             mNativeAd.prepare(mATNativeAdView, nativePrepareInfo);
         }
     }
+    @SuppressLint("MissingInflatedId")
+    public  void nativeBannerExpressAd(Activity activity, ViewGroup container){
+        //初始化广告加载对象
+        if (atBannerNative == null){
+            return;
+        }
 
-    public static void  initInterstitialAd(Activity activity){
+        if(!atBannerNative.checkAdStatus().isReady()){
+            if(atNative.checkAdStatus().isReady()){
+                atBannerNative = atNative;
+            } else{
+                return;
+            }
+        }
+
+        View inflate = LayoutInflater.from(activity).inflate(R.layout.layout_native_selfrender, null);
+        ATNativeAdView  mATNativeAdView = inflate.findViewById(R.id.native_ad_view);
+        View  mSelfRenderView = inflate.findViewById(R.id.native_selfrender_view); //可在xml布局定义
+        container.addView(inflate);
+        NativeAd nativeAd = atBannerNative.getNativeAd();
+        //开发者可以在调用getNativeAd后直接使用ATNative#makeAdRequest发起预加载下一次的广告
+        //loadNativeAd();
+
+        if (nativeAd != null) {
+            if (mBannerNativeAd != null) {
+                mBannerNativeAd.destory();
+            }
+
+            mBannerNativeAd = nativeAd;
+
+            ATNativePrepareInfo nativePrepareInfo = null;
+
+            if (!mBannerNativeAd.isNativeExpress()) {
+                //自渲染
+                nativePrepareInfo = new ATNativePrepareInfo();
+                bindSelfRenderView(activity, mBannerNativeAd.getAdMaterial(), mSelfRenderView, nativePrepareInfo, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        container.setVisibility(View.GONE);
+                    }
+                });
+                mBannerNativeAd.renderAdContainer(mATNativeAdView, mSelfRenderView);
+            } else {
+                //模板渲染
+                mBannerNativeAd.renderAdContainer(mATNativeAdView, null);
+            }
+            mBannerNativeAd.prepare(mATNativeAdView, nativePrepareInfo);
+        }
+    }
+    public  void  initInterstitialAd(Activity activity){
         mInterstitialAd = new ATInterstitial(activity, AdConfig.插屏);
         mInterstitialAd.load();
     }
     //插屏
-    public static void interstitialAd(Activity activity,AdListener adListener) {
+    public  void interstitialAd(Activity activity,AdListener adListener) {
 
         if (mInterstitialAd!=null&&mInterstitialAd.isAdReady()) {
             mInterstitialAd.setAdListener( new ATInterstitialListener() {
@@ -390,7 +493,7 @@ public class AdUtils {
         }
     }
     //Banner
-    public static void bannerAd(Activity activity,ViewGroup container) {
+    public  void bannerAd(Activity activity,ViewGroup container) {
         mBannerView = new ATBannerView(activity);
         mBannerView.setPlacementId(AdConfig.横幅);
         mBannerView.setBannerAdListener(new ATBannerExListener() {

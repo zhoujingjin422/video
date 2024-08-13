@@ -1,14 +1,17 @@
 package com.ruifenglb.www.banner;
 
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.ad.biddingsdk.AdUtils;
 import com.blankj.utilcode.util.StringUtils;
 
 import com.ruifenglb.www.R;
@@ -17,6 +20,8 @@ import com.ruifenglb.www.bean.BannerBean;
 import com.ruifenglb.www.bean.StartBean;
 import com.ruifenglb.www.bean.VodBean;
 import com.ruifenglb.www.utils.MMkvUtils;
+import com.youth.banner.listener.OnBannerListener;
+
 import me.drakeet.multitype.ItemViewBinder;
 
 @SuppressWarnings("unused")
@@ -68,14 +73,24 @@ public class BannerItemViewBinder extends ItemViewBinder<BannerBean, BannerItemV
 
         holder.myBanner.setOnBannerActionListener(this);
         holder.myBanner.setDataList(item.getBannerList());
-        holder.myBanner.start();
+        holder.myBanner.setOnBannerActionListener(new BlurBanner.onBannerActionListener() {
+            @Override
+            public void onPageChange(int position, Bitmap bitmap) {
+                if (position==item.getBannerList().size()-1){
+                    holder.adWebView.setVisibility(View.VISIBLE);
+                }else{
+                    holder.adWebView.setVisibility(View.GONE);
+                }
+            }
 
-//        if (ad != null && !StringUtils.isEmpty(ad.getDescription()) && ad.getStatus() == 1) {
-//            holder.adWebView.setVisibility(View.VISIBLE);
-//            holder.adWebView.loadHtmlBody(ad.getDescription());
-//        } else {
-//            holder.adWebView.setVisibility(View.GONE);
-//        }
+            @Override
+            public void onBannerClick(int position, Object o) {
+
+            }
+        });
+        holder.myBanner.start();
+        AdUtils.getInstance().nativeBannerExpressAd((Activity) holder.adWebView.getContext(),holder.adWebView);
+
     }
 
     @Override
@@ -93,13 +108,13 @@ public class BannerItemViewBinder extends ItemViewBinder<BannerBean, BannerItemV
         private @NonNull
         final BlurBanner<VodBean> myBanner;
 
-//        private @NonNull
-//        final AdWebView adWebView;
+        private @NonNull
+        final FrameLayout adWebView;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             myBanner = itemView.findViewById(R.id.item_banner);
-//            adWebView = itemView.findViewById(R.id.adWebView);
+            adWebView = itemView.findViewById(R.id.adWebView);
         }
 
     }

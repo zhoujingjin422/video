@@ -29,7 +29,7 @@ public class AdViewBinder extends ItemViewBinder<StartBean.Ad, AdViewBinder.View
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull StartBean.Ad ad) {
-        AdUtils.nativeExpressAd((Activity) holder.itemView.getContext(),holder.adWebView);
+        AdUtils.getInstance().nativeExpressAd((Activity) holder.itemView.getContext(),holder.adWebView);
 //        if (ad == null || ad.getStatus() == 0 || ad.getDescription() == null || ad.getDescription().isEmpty()) {
 //            holder.adWebView.setVisibility(View.GONE);
 //            holder.blankView.setVisibility(View.GONE);

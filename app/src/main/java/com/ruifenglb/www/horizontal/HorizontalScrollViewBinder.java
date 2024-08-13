@@ -76,7 +76,7 @@ public class HorizontalScrollViewBinder extends ItemViewBinder<NewRecommendBean2
 //        } else {
 //            holder.adWebView.setVisibility(View.GONE);
 //        }
-        AdUtils.bannerAd((Activity) holder.adWebView.getContext(),holder.adWebView);
+//        AdUtils.bannerAd((Activity) holder.adWebView.getContext(),holder.adWebView);
         RecommendBean2 recommendBean2 = item.getZhui().get(0);
         holder.textView.setText(recommendBean2.getVod_type_name());
 

@@ -1,10 +1,5 @@
 package com.ruifenglb.www.ui.start;
 
-import static com.app.ad.biddingsdk.AdUtils.initInterstitialAd;
-import static com.app.ad.biddingsdk.AdUtils.initNativeExpressAd;
-import static com.app.ad.biddingsdk.AdUtils.initRewardVideo;
-import static com.app.ad.biddingsdk.AdUtils.initSplashAdd;
-import static com.app.ad.biddingsdk.AdUtils.initTVRewardVideo;
 
 import android.content.Intent;
 
@@ -153,9 +148,10 @@ public class StartActivity extends BaseActivity {
         //清空启动背景
         //this.getWindow().getDecorView().setBackground(null);
         super.onCreate(savedInstanceState);
-        initSplashAdd(this);
-        initInterstitialAd(this);
-        initNativeExpressAd(this);
+        AdUtils.getInstance().initSplashAdd(this);
+        AdUtils.getInstance().initInterstitialAd(this);
+        AdUtils.getInstance().initNativeExpressAd(this);
+        AdUtils.getInstance().initNativeBannerExpressAd(this);
         com.ruifenglb.www.download.SPUtils.setBoolean(this, "isVip",true);
 //        com.ruifenglb.www.download.SPUtils.setString(this,"cookie_user_id", getAndroidID() );
  if(com.ruifenglb.www.download.SPUtils.getString(imageView.getContext(),"why").equals("暗夜紫")) {
@@ -176,7 +172,12 @@ public class StartActivity extends BaseActivity {
         EventBus.getDefault().register(this);
 
 
-        getAppConfig();
+        textView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getAppConfig();
+            }
+        },1000L);
 //        new Thread(() -> ReadUrl()).start();
         BarUtils.setStatusBarVisibility(this, false);
         BarUtils.setNavBarVisibility(this, false);
@@ -190,7 +191,7 @@ public class StartActivity extends BaseActivity {
 
 
     private void showAd(){
-        AdUtils.splashAd(this, adView, new AdListener() {
+        AdUtils.getInstance().splashAd(this, adView, new AdListener() {
             @Override
             public void onShow() {
                 handler.removeCallbacks(runnable);
@@ -202,7 +203,7 @@ public class StartActivity extends BaseActivity {
             }
 
             @Override
-            public void reword() {
+            public void reword(boolean b) {
 
             }
         });

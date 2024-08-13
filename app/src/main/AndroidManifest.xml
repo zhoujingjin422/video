@@ -3,16 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ruifenglb.www">
 
-    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+<!--    <uses-permission android:name="android.permission.RESTART_PACKAGES" />-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
+<!--    <uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+<!--    <uses-permission android:name="android.permission.CAMERA" />-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+<!--    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />-->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!--    悬浮窗权限-->
@@ -32,7 +32,6 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup"
         tools:targetApi="m">
-        <activity android:name=".ui.task.MainActivity33" />
         <activity
             android:name=".ui.browser.BrowserActivity"
             android:launchMode="singleTop"
@@ -175,10 +174,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.specialtopic.SpecialtTopicActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.specialtopic.TopicDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
@@ -214,7 +209,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".TestActivity2" />
-        <activity android:name=".ui.task.MainActivity3" />
         <activity android:name=".TestAes"></activity>
         <activity android:name=".MergeTestActivity2"></activity>
 

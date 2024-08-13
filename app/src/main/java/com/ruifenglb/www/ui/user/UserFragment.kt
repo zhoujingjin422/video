@@ -434,7 +434,7 @@ class UserFragment : BaseFragment() {
             UserUtils.userInfo = null
             updateUserInfo()
             getPlayScore()
-            AdUtils.nativeExpressAd(activity,awvUser)
+            AdUtils.getInstance().nativeExpressAd(activity,awvUser)
             if (UserUtils.isLogin()) {
                 getUserInfo()
                 getGlodTip()
@@ -525,21 +525,21 @@ class UserFragment : BaseFragment() {
                     ToastUtils.showShort("签到成功，获得${data.score}积分")
                     // AdUtils.interstitialAd(activity)
                //新全屏广告VIP免广告
-                    if (SPUtils.getBoolean(context, "isVip") ) {
-
-                    } else {
-                        AdUtils.interstitialAd(mActivity,object :AdListener{
-                            override fun onShow() {
-                            }
-
-                            override fun onClose() {
-                            }
-
-                            override fun reword() {
-
-                            }
-                        })
-                    }
+//                    if (SPUtils.getBoolean(context, "isVip") ) {
+//
+//                    } else {
+//                        AdUtils.getInstance().interstitialAd(mActivity,object :AdListener{
+//                            override fun onShow() {
+//                            }
+//
+//                            override fun onClose() {
+//                            }
+//
+//                            override fun reword(b:Boolean) {
+//
+//                            }
+//                        })
+//                    }
                     //新全屏广告VIP免广告
                 }
                 onLoginSucces()

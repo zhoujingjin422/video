@@ -123,16 +123,16 @@
         android:textColor="#ffffff"
         android:textSize="6dp" />
 
-    <ImageView
-        android:id="@+id/native_ad_close"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="2dp"
-        android:layout_marginRight="2dp"
-        android:padding="5dp"
-        android:visibility="gone"
-        android:src="@mipmap/ad_close" />
+<!--    <ImageView-->
+<!--        android:id="@+id/native_ad_close"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_marginTop="2dp"-->
+<!--        android:layout_marginRight="2dp"-->
+<!--        android:padding="5dp"-->
+<!--        android:visibility="gone"-->
+<!--        android:src="@mipmap/ad_close" />-->
 
     <LinearLayout
         android:id="@+id/six_info"
