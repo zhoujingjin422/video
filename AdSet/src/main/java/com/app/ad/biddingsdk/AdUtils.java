@@ -66,8 +66,8 @@ public class AdUtils {
         ATSDK.init(app, AppID, TakuAppKey);
 //调用init后请再调用start，否则可能影响广告填充，造成收入下降
         ATSDK.start();
-        ATSDK.integrationChecking(app);
-        ATSDK.setNetworkLogDebug(true);//应用上线前须关闭
+//        ATSDK.integrationChecking(app);
+//        ATSDK.setNetworkLogDebug(true);//应用上线前须关闭
 
     }
     public void initSplashAdd(Activity mContext){

@@ -10,18 +10,19 @@ android {
     signingConfigs {
         release {
             storeFile file('lemon.jks')
-            storePassword 'com.lemon.lemonmovien'
+            storePassword 'com.lemon.lemonmovie'
             keyAlias = 'lemon'
-            keyPassword 'com.lemon.lemonmovien'
+            keyPassword 'com.lemon.lemonmovie'
         }
     }
 
     defaultConfig {
-        applicationId "com.lemon.lemonmovien"
+//        applicationId "com.lemon.lemonmovi"
+        applicationId "com.lemon.lemonmovie"
         minSdkVersion 23
         targetSdkVersion 28
 
-        versionCode 1
+        versionCode 2
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
