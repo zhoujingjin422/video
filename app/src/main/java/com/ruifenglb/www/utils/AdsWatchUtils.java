@@ -16,7 +16,7 @@ public class AdsWatchUtils {
      * @return
      */
     public static boolean needShowAds(int position){
-            return (position+1) % 6 == 0;
+            return (position+1)>=6;
     }
     /**
      * 短剧看激励视频逻辑

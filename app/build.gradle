@@ -9,20 +9,20 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('lbsp.keykjsh')
-            storePassword 'lbspyss546400...'
-            keyAlias = 'lbsp.keydhjashj'
-            keyPassword 'lbspyss585821...'
+            storeFile file('lemon.jks')
+            storePassword 'com.lemon.lemonmovien'
+            keyAlias = 'lemon'
+            keyPassword 'com.lemon.lemonmovien'
         }
     }
 
     defaultConfig {
-        applicationId "com.example.calculate.cq"
+        applicationId "com.lemon.lemonmovien"
         minSdkVersion 23
         targetSdkVersion 28
 
-        versionCode 6
-        versionName "7.3.1"
+        versionCode 1
+        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
