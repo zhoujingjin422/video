@@ -58,7 +58,7 @@ class FeedbackActivity : BaseActivity() {
         super.initView()
         isHave = intent.getBooleanExtra("isHave", false)
         if (isHave) {
-            commitMsg = intent.getStringExtra("msg")
+            commitMsg = intent.getStringExtra("msg")?:""
             commitMsg?.let {
                 etComment.setText(commitMsg)
             }

@@ -146,7 +146,7 @@ class ForgetPswActivity : BaseActivity(), Handler.Callback {
         timer?.cancel()
     }
 
-    override fun handleMessage(msg: Message?): Boolean {
+    override fun handleMessage(msg: Message): Boolean {
         return when (msg?.what) {
             WHAT_COUNT -> {
                 if (msg.arg1 == MAX_NUM) {
@@ -162,4 +162,5 @@ class ForgetPswActivity : BaseActivity(), Handler.Callback {
             }
         }
     }
+
 }

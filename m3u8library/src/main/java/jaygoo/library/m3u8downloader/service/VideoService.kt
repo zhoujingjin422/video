@@ -24,8 +24,8 @@ class VideoService : IntentService("VideoService") {
     override fun onHandleIntent(intent: Intent?) {
         when (intent?.action) {
             ACTION_FOO -> {
-                val param1 = intent.getStringExtra(EXTRA_PARAM1)
-                val param2 = intent.getStringExtra(EXTRA_PARAM2)
+                val param1 = intent.getStringExtra(EXTRA_PARAM1)?:""
+                val param2 = intent.getStringExtra(EXTRA_PARAM2)?:""
                 handleActionFoo(param1, param2)
             }
 

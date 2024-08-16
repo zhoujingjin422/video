@@ -103,7 +103,7 @@ class LoginActivity : BaseActivity(), Handler.Callback {
         ssb.append(str)
         val start = str.indexOf("《") //第一个出现的位置
         ssb.setSpan(object : ClickableSpan() {
-            override fun onClick(widget: View?) {
+            override fun onClick(widget: View) {
                 val intent = Intent(context, X5WebActivity::class.java)
                 val bundle = Bundle()
                 bundle.putString("url", ApiConfig.MOGAI_BASE_URL + "/reg/TermsOfService.html")
@@ -117,11 +117,13 @@ class LoginActivity : BaseActivity(), Handler.Callback {
                 ds.color = resources.getColor(R.color._xpopup_content_color) //设置文件颜色
                 ds.isUnderlineText = false
             }
+
+
         }, start, start + 6, 0)
 
         val end = str.lastIndexOf("《") //最后一个出现的位置
         ssb.setSpan(object : ClickableSpan() {
-            override fun onClick(widget: View?) {
+            override fun onClick(widget: View) {
                 val intent = Intent(context, X5WebActivity::class.java)
                 val bundle = Bundle()
                 bundle.putString("url", ApiConfig.MOGAI_BASE_URL + "/reg/PrivacyPolicy.html")
@@ -138,7 +140,7 @@ class LoginActivity : BaseActivity(), Handler.Callback {
         }, end, end + 7, 0)
         val middle = str.indexOf("【") //第一个出现的位置
         ssb.setSpan(object : ClickableSpan() {
-            override fun onClick(widget: View?) {
+            override fun onClick(widget: View) {
                 val intent = Intent(context, X5WebActivity::class.java)
                 val bundle = Bundle()
                 bundle.putString("url", ApiConfig.MOGAI_BASE_URL + "/reg/PlatformStatement.html")
@@ -484,7 +486,7 @@ class LoginActivity : BaseActivity(), Handler.Callback {
     }
 
     @SuppressLint("SetTextI18n")
-    override fun handleMessage(msg: Message?): Boolean {
+    override fun handleMessage(msg: Message): Boolean {
         return when (msg?.what) {
             WHAT_COUNT -> {
                 if (msg.arg1 == MAX_NUM) {
@@ -500,4 +502,6 @@ class LoginActivity : BaseActivity(), Handler.Callback {
             }
         }
     }
+
+
 }

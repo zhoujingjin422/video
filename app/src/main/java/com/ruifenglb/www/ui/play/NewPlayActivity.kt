@@ -212,7 +212,7 @@ open class NewPlayActivity : BaseActivity(), OnSpeedItemClickListener {
 
         } else {
             mIsShowing = false
-            mVodBean = intent.getParcelableExtra(PlayActivity.KEY_VOD) as VodBean
+            mVodBean = intent.getParcelableExtra(PlayActivity.KEY_VOD)!!
             isShowPlayProgress = intent.getBooleanExtra(PlayActivity.KEY_SHOW_PROGRESS, false)
             pipManager?.actClass = NewPlayActivity::class.java
         }

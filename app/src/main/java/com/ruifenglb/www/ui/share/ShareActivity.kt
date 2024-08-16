@@ -161,7 +161,7 @@ class ShareActivity : BaseActivity() {
         }
         if (requestCode == -1) {
             if (data != null) {
-                vom_name = data.getStringExtra("vom_name")
+                vom_name = data.getStringExtra("vom_name")?:""
                 VomName.setText(vom_name)
             }
 
