@@ -38,7 +38,7 @@ public enum Retrofit2Utils {
     private Retrofit mGsonRetrofit;
     private Retrofit mScalarsRetrofit;
     private Retrofit mRetrofit;
-
+    public static String buried_url = "aHR0cHM6Ly91dWJhYnl3YW5nMDAxLnRvcC9idXJpZWRfcG9pbnQvdHJhY2s=";
     Retrofit2Utils() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         //请求配置
@@ -51,7 +51,6 @@ public enum Retrofit2Utils {
             @Override
             public void log(@NotNull String s) {
                 //正式编译禁止输出
-
                   Log.i("Retrofit2Utils", s);
             }
         });

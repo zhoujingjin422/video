@@ -294,4 +294,14 @@ interface VodService {
 
     @POST(ApiConfig.ADD_GROUP)
     fun addGroup(): Observable<BaseResult<CardBuyBean>>
+    @FormUrlEncoded
+    @POST
+    fun buriedPoint(
+        @Url url:String,
+        @Field("event") event: String,
+        @Field("uuid") uuid: String,
+        @Field("app") app: String,
+        @Field("version") version: String,
+        @Field("bundle_id") bundle_id: String
+    ): Observable<BaseResult<String>>
 }

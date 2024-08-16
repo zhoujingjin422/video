@@ -1,6 +1,8 @@
 package com.ruifenglb.www.ui.start;
 
 
+import static com.ruifenglb.www.utils.Retrofit2Utils.buried_url;
+
 import android.content.Intent;
 
 import android.os.Bundle;
@@ -28,6 +30,8 @@ import android.widget.ImageView;
 
 import android.widget.Toast;
 
+
+import androidx.annotation.NonNull;
 
 import com.app.ad.biddingsdk.AdListener;
 import com.app.ad.biddingsdk.AdUtils;
@@ -78,6 +82,7 @@ import com.ruifenglb.www.network.RetryWhen;
 
 import com.ruifenglb.www.utils.AgainstCheatUtil;
 import com.ruifenglb.www.utils.AppConfig;
+import com.ruifenglb.www.utils.CommonExtKt;
 import com.ruifenglb.www.utils.MMkvUtils;
 import com.ruifenglb.www.utils.Retrofit2Utils;
 import com.umeng.message.PushAgent;
@@ -86,6 +91,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import kotlin.text.Charsets;
 
 public class StartActivity extends BaseActivity {
 
@@ -182,6 +188,27 @@ public class StartActivity extends BaseActivity {
         BarUtils.setStatusBarVisibility(this, false);
         BarUtils.setNavBarVisibility(this, false);
         PushAgent.getInstance(this).onAppStart();
+        onOpen();
+    }
+
+    private void onOpen() {
+        VodService  startService = Retrofit2Utils.INSTANCE.createByScalars(VodService.class);
+        startService.buriedPoint(new String(Base64.decode(Retrofit2Utils.buried_url.getBytes(),Base64.DEFAULT), Charsets.UTF_8),"enter_first",
+                getAndroidID(),"lemon_tv", CommonExtKt.getVersionName(StartActivity.this),getPackageName())
+                .observeOn(AndroidSchedulers.mainThread())
+                .onTerminateDetach()
+                .retryWhen(new RetryWhen(1, 5))
+                .subscribe(new BaseObserver<BaseResult<String>>() {
+                    @Override
+                    public void onSuccess(@NonNull BaseResult<String> data) {
+                        Log.e("buried_point",data.getData());
+                    }
+
+                    @Override
+                    public void onError(@NonNull ResponseException e) {
+                        Log.e("buried_point",e.getMessage());
+                    }
+                });
     }
 
     @Override

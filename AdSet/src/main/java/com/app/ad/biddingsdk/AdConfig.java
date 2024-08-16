@@ -10,8 +10,5 @@ public class AdConfig {
     public static String 插屏="b66a9f63fa9c78";
     public static String 激励视频="b66a9f63e9ebcf";
     public static String 信息流="b66a9f63e1cb80";//信息流（原生）
-
-    public static final String 电影_奖励 = "b66b09dd9578d8";//电影_奖励
-//    public static final String 电视剧_激励 = "b66b09dd9578d8";
     public static final String 电视剧_激励 = "b66b09dbd65310";
 }

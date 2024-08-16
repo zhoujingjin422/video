@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.CountDownTimer
+import android.util.Base64
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
@@ -47,6 +48,7 @@ import com.ruifenglb.av.play.ControllerClickListener
 import com.ruifenglb.av.play.ControllerPlayIngLisenter
 import com.ruifenglb.www.R
 import com.ruifenglb.www.base.BaseActivity
+import com.ruifenglb.www.bean.BaseResult
 import com.ruifenglb.www.bean.CardBuyBean
 import com.ruifenglb.www.bean.DanMuBean
 import com.ruifenglb.www.bean.GetScoreBean
@@ -61,6 +63,7 @@ import com.ruifenglb.www.entity.AdvEntity
 import com.ruifenglb.www.jiexi.BackListener
 import com.ruifenglb.www.jiexi.JieXiUtils2
 import com.ruifenglb.www.netservice.VodService
+import com.ruifenglb.www.network.RetryWhen
 import com.ruifenglb.www.pip.PIPManager
 import com.ruifenglb.www.ui.dlan.DlanListPop
 import com.ruifenglb.www.ui.feedback.FeedbackActivity
@@ -74,10 +77,11 @@ import com.ruifenglb.www.utils.AgainstCheatUtil
 import com.ruifenglb.www.utils.LoginUtils
 import com.ruifenglb.www.utils.MMkvUtils
 import com.ruifenglb.www.utils.MMkvUtils.Companion.Builds
-import com.ruifenglb.www.utils.MatchUtil
 import com.ruifenglb.www.utils.Retrofit2Utils
 import com.ruifenglb.www.utils.UserUtils
 import com.ruifenglb.www.utils.UserUtils.isLogin
+import com.ruifenglb.www.utils.versionName
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_new_play.frameLayout
 import kotlinx.android.synthetic.main.activity_new_play.imgCloseStopAd
 import kotlinx.android.synthetic.main.activity_new_play.layoutAdv
@@ -193,7 +197,7 @@ open class NewPlayActivity : BaseActivity(), OnSpeedItemClickListener {
 //        Builds().loadStartBean("")?.ads?.player_pause?.description // 广告代码
 //        EventBus.getDefault().register(this)
         BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.player_status_color))
-
+        onOpen()
         videoView = VideoViewManager.instance().get("pip") as AvVideoView
         controller = AvVideoController(videoView, this)
 
@@ -258,8 +262,25 @@ open class NewPlayActivity : BaseActivity(), OnSpeedItemClickListener {
 //            }
 //        }
 //    }
+private  fun onOpen() {
+    val startService = Retrofit2Utils.INSTANCE.createByScalars(VodService::class.java)
+    startService.buriedPoint(
+        String(Base64.decode(Retrofit2Utils.buried_url.toByteArray(), Base64.DEFAULT), Charsets.UTF_8), "mov_detail",
+        getAndroidID(), "lemon_tv", this@NewPlayActivity.versionName, packageName
+    )
+        .observeOn(AndroidSchedulers.mainThread())
+        .onTerminateDetach()
+        .retryWhen(RetryWhen(1, 5))
+        .subscribe(object : BaseObserver<BaseResult<String>>() {
+            override fun onSuccess(data: BaseResult<String>) {
+                Log.e("buried_point", data.data!!)
+            }
 
-
+            override fun onError(e: ResponseException) {
+                Log.e("buried_point", e.message!!)
+            }
+        })
+}
     open fun sendDanmaku_wqddg(str: String) {
         if (videoView == null) return
         if (!StringUtils.isEmpty(str)) {
