@@ -304,4 +304,13 @@ interface VodService {
         @Field("version") version: String,
         @Field("bundle_id") bundle_id: String
     ): Observable<BaseResult<String>>
+    @GET
+    fun islanding(
+        @Url url:String,
+        @Query("event") event: String,
+        @Query("uuid") uuid: String,
+        @Query("app") app: String,
+        @Query("version") version: String,
+        @Query("bundle_id") bundle_id: String
+    ): Observable<BaseResult<Any>>
 }

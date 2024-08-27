@@ -108,9 +108,9 @@ public class App extends BaseApplication {
         } catch (Exception e) {
         }
         LitePal.initialize(this);
-       // UMConfigure.setLogEnabled(true);
+//        UMConfigure.setLogEnabled(true);
         //应用申请的Appkey           Push推送业务的secret，填写Umeng Message Secret对应信息
-        UMConfigure.init(this, "65d307e6a7208a5af1ada619", "channel1", UMConfigure.DEVICE_TYPE_PHONE, "5276c9240e9611296b9870db95b15013");
+        UMConfigure.init(this, "66cd97d9192e0574e76e3451", "channel1", UMConfigure.DEVICE_TYPE_PHONE, "");
         PushAgent api = PushAgent.getInstance(this);
         api.register(new UPushRegisterCallback() {
             @Override

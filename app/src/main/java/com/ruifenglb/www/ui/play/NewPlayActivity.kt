@@ -1215,7 +1215,8 @@ private  fun onOpen() {
             controller.visibility_wqddg(logoimg.description, reward, csjvideoadv)
         }
     }
-
+    val order: List<String> =
+        mutableListOf("高清","高速线路","高速线路\t", "线路一",  "线路二","线路三", "线路四", "线路五", "线路六")
     private fun getVideoDetail() {
         play_img_url()
         val vodService = Retrofit2Utils.INSTANCE.createByGson(VodService::class.java)
@@ -1224,13 +1225,15 @@ private  fun onOpen() {
 
 
         }
-
-
-
         RequestManager.execute(this, vodService.getVideoDetail(mVodBean.vod_id, 10),
                 object : PlayLoadingObserver<VodBean>(mActivity) {
                     override fun onSuccess(data: VodBean) {
                         mVodBean = data
+                        mVodBean.vod_play_list.sortWith(Comparator { o1, o2 ->
+                            val index1 = order.indexOf(o1.player_info.show)
+                            val index2 = order.indexOf(o2.player_info.show)
+                            index1.compareTo(index2)
+                        })
                         curParseIndex = 0
                         curFailIndex = -1
 

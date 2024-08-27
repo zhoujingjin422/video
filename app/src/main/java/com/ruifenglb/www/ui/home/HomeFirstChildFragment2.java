@@ -15,6 +15,9 @@ import com.blankj.utilcode.util.ToastUtils;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -531,6 +534,15 @@ public class HomeFirstChildFragment2 extends BaseItemFragment<String> {
                             String s = recommendBean2.toString();
                             Log.e("TAG", "RecommendBean2Zhui toString: " + recommendBean2.toString());
                         }
+                        List<String> order = Arrays.asList("电视剧", "短剧", "伦理片", "电影", "动漫", "纪录片", "综艺");
+                        Collections.sort(newRecommendBean2PageResult.getData().getList(), new Comparator<RecommendBean2>() {
+                            @Override
+                            public int compare(RecommendBean2 o1, RecommendBean2 o2) {
+                                int index1 = order.indexOf(o1.getVod_type_name());
+                                int index2 = order.indexOf(o2.getVod_type_name());
+                                return Integer.compare(index1, index2);
+                            }
+                        });
                         items.add(newRecommendBean2PageResult.getData());
                         adapter.notifyDataSetChanged();
 

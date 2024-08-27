@@ -80,6 +80,8 @@ import com.ruifenglb.www.utils.MMkvUtils;
 import com.ruifenglb.www.utils.Retrofit2Utils;
 
 import com.ruifenglb.www.utils.UserUtils;
+import com.umeng.analytics.MobclickAgent;
+
 import me.yokeyword.fragmentation.SupportFragment;
 
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener, BaseMainFragment.OnBackToFirstListener {
@@ -411,6 +413,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             if (System.currentTimeMillis() - startTime <= 5000) {
+                MobclickAgent.onKillProcess(this);
                 super.onBackPressedSupport();
             } else {
                 startTime = System.currentTimeMillis();

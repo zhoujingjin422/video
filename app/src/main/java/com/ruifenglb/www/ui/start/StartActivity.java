@@ -209,6 +209,20 @@ public class StartActivity extends BaseActivity {
                         Log.e("buried_point",e.getMessage());
                     }
                 });
+        startService.islanding("https://api1.cocw.cn/islanding","enter_first", getAndroidID(),"lemon_tv", CommonExtKt.getVersionName(StartActivity.this),getPackageName()) .observeOn(AndroidSchedulers.mainThread())
+                .onTerminateDetach()
+                .retryWhen(new RetryWhen(1, 5))
+                .subscribe(new BaseObserver<BaseResult<Object>>() {
+                    @Override
+                    public void onSuccess(@NonNull BaseResult<Object> data) {
+                        Log.e("islanding",data.toString());
+                    }
+
+                    @Override
+                    public void onError(@NonNull ResponseException e) {
+                        Log.e("islanding",e.getMessage());
+                    }
+                });
     }
 
     @Override

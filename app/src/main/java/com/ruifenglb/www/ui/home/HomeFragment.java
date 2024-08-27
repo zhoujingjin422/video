@@ -23,7 +23,9 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -512,26 +514,35 @@ public class HomeFragment extends BaseMainFragment implements BackMainFragment {
                             if (result.isSuccessful()) {
                                 isInit = true;
                                 List<TypeBean> list = result.getData().getList();
-                                List<TypeBean> newList = new ArrayList<>();
-                                ArrayList<Integer> sortList = new ArrayList<>();
-                                for (TypeBean bean : list) {
-                                    if(bean.getType_status()==1){
-                                        sortList.add(bean.getType_sort());
+//                                List<TypeBean> newList = new ArrayList<>();
+//                                ArrayList<Integer> sortList = new ArrayList<>();
+//                                for (TypeBean bean : list) {
+//                                    if(bean.getType_status()==1){
+//                                        sortList.add(bean.getType_sort());
+//                                    }
+//                                }
+//                                Collections.sort(sortList);
+//
+//                                for (int i = 0; i < sortList.size(); i++) {
+//                                    for (int j = 0; j < list.size(); j++) {
+//                                        TypeBean bean = list.get(j);
+//                                        if (sortList.get(i) == bean.getType_sort()) {
+//                                            newList.add(bean);
+//                                        }
+//                                    }
+//                                }
+                                List<String> order = Arrays.asList("电视剧", "短剧", "伦理片", "电影", "动漫", "综艺", "纪录片");
+                                Collections.sort(list, new Comparator<TypeBean>() {
+                                    @Override
+                                    public int compare(TypeBean o1, TypeBean o2) {
+                                        int index1 = order.indexOf(o1.getType_name());
+                                        int index2 = order.indexOf(o2.getType_name());
+                                        return Integer.compare(index1, index2);
                                     }
-                                }
-                                Collections.sort(sortList);
-
-                                for (int i = 0; i < sortList.size(); i++) {
-                                    for (int j = 0; j < list.size(); j++) {
-                                        TypeBean bean = list.get(j);
-                                        if (sortList.get(i) == bean.getType_sort()) {
-                                            newList.add(bean);
-                                        }
-                                    }
-                                }
-                                typeBeans = newList;
+                                });
+                                typeBeans = list;
                                 if (pagerFragmentAdapter != null) {
-                                    pagerFragmentAdapter.addData(newList);
+                                    pagerFragmentAdapter.addData(list);
                                 }
                             }
                         }
