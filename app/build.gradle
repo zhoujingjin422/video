@@ -9,21 +9,21 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('lemon.jks')
-            storePassword 'com.lemon.lemonmovie'
-            keyAlias = 'lemon'
-            keyPassword 'com.lemon.lemonmovie'
+            storeFile file('weike1.jks')
+            storePassword 'com.browser.weike'
+            keyAlias = 'weike1'
+            keyPassword 'com.browser.weike'
         }
     }
 
     defaultConfig {
 //        applicationId "com.lemon.lemonmovi"
-        applicationId "com.lemon.lemonmovie"
+        applicationId "com.browser.weike"
         minSdkVersion 23
         targetSdkVersion 30
 
-        versionCode 6
-        versionName "1.0.2"
+        versionCode 7
+        versionName "1.0.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {

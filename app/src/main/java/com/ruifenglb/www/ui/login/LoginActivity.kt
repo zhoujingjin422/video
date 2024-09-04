@@ -73,7 +73,7 @@ class LoginActivity : BaseActivity(), Handler.Callback {
         BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.black))
         checkIsOpenRegister()
         Glide.with(this)
-                .load(R.mipmap.ic_launcher_round)
+                .load(R.mipmap.launcher)
                 .error(R.drawable.ic_default_avator)
                 .centerCrop()
                 .override(imageWidthSize, imageHeightSize) //默认淡入淡出动画

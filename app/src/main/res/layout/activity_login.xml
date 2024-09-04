@@ -41,7 +41,7 @@
             android:id="@+id/iv_user_plcs"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/launcher" />
 
         <TextView
             android:id="@+id/textid"

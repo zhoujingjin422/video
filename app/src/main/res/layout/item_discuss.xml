@@ -45,7 +45,7 @@
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:background="@mipmap/ic_launcher_round" />
+                    android:background="@mipmap/launcher" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

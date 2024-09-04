@@ -42,7 +42,7 @@
         android:layout_marginLeft="15dp"
         android:layout_toRightOf="@id/cb"
         android:scaleType="centerCrop"
-        tools:src="@mipmap/ic_launcher" />
+        tools:src="@mipmap/ic_launche" />
 
     <TextView
         android:id="@+id/tvName"

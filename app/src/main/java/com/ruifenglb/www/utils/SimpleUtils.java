@@ -351,8 +351,8 @@ public class SimpleUtils {
         impBuilder.setIgnoreGif(false);//设置支持gif
         impBuilder.setCircular(false);//设置显示圆形图片
         impBuilder.setSquare(false);
-        impBuilder.setFailureDrawableId(R.mipmap.ic_launcher);
-        impBuilder.setLoadingDrawableId(R.mipmap.ic_launcher);
+        impBuilder.setFailureDrawableId(R.mipmap.launcher);
+        impBuilder.setLoadingDrawableId(R.mipmap.launcher);
         ImageOptions build = impBuilder.build();
         x.image().bind(imageView, url, build);
 

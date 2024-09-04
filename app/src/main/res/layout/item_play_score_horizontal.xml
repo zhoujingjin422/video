@@ -17,7 +17,7 @@
             android:layout_width="140dp"
             android:layout_height="75dp"
             android:scaleType="centerCrop"
-            tools:src="@mipmap/ic_launcher" />
+            tools:src="@mipmap/ic_launche" />
 
         <TextView
             android:id="@+id/tvPlayProgress"

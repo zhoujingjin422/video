@@ -46,7 +46,7 @@
 
         <ImageView
             android:id="@+id/type_icon"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/launcher"
             android:layout_marginRight="@dimen/dp_10"
             android:layout_width="24dp"
             android:layout_height="24dp"/>
