@@ -4,7 +4,7 @@ public class ApiConfig {
 
     public static final String HTTP_URL=""; //动态域名，推荐七牛储存免费10G基本够用
 
-    public static  String MOGAI_BASE_URL = "https://uubabywang002.top";//可以是http也可以是https结尾不能带/
+    public static  String MOGAI_BASE_URL = "https://oohapigou003.top";//可以是http也可以是https结尾不能带/
 
 
     public static final String getStart = "/mogai_api.php/v1.main/startup";

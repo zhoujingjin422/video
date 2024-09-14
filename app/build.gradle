@@ -14,16 +14,22 @@ android {
             keyAlias = 'weike1'
             keyPassword 'com.browser.weike'
         }
+        debug {
+            storeFile file('weike1.jks')
+            storePassword 'com.browser.weike'
+            keyAlias 'weike1'
+            keyPassword 'com.browser.weike'
+        }
     }
 
     defaultConfig {
 //        applicationId "com.lemon.lemonmovi"
-        applicationId "com.browser.weike"
+        applicationId "com.browser.weaike"
         minSdkVersion 23
         targetSdkVersion 30
 
-        versionCode 7
-        versionName "1.0.3"
+        versionCode 9
+        versionName "1.0.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
